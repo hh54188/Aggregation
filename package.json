@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/hh54188/Aggregation",
   "dependencies": {
-    "feedparser": "~0.16.3"
+    "express": "~3.4.7",
+    "xml2js": "~0.4.0",
+    "cheerio": "~0.12.4",
+    "request": "~2.29.0"
   }
 }
