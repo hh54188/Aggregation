@@ -1,4 +1,5 @@
 // RSS 2.0解析器
+// 将rss xml文件转化为JSON
 
 var parseString = require('xml2js').parseString;
 var request = require('request');
