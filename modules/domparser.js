@@ -3,13 +3,13 @@
 var cheerio = require('cheerio');
 /*
 	props: {
-		name: {
+		property_name: {
 			selector: null,
 			attr: ""
 		}
 	}
 */
-exports.parse = function (html, item_selector, props) {
+exports.parse = function (html, item_selector, props, fn) {
 
 	var $ = cheerio.load(html);
 
@@ -28,5 +28,6 @@ exports.parse = function (html, item_selector, props) {
 		return temp;
 	});
 
-	console.log(items2json.length);
+	// items2json格式为数组
+	fn(items2json);
 }
