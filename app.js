@@ -19,45 +19,21 @@ page2dom.parse([
 	// "http://www.billboard.com/charts/hot-100?page=0",
 	// "http://www.billboard.com/charts/hot-100?page=1",
 	// "http://www.billboard.com/charts/hot-100?page=2",
-	"http://www.billboard.com/charts/hot-100?page=3"
+	"http://www.douban.com/group/beijingzufang/discussion?start=50"
 ], function (url_and_body) {
 
 	var arr_html = url_and_body.map(function (item) {
 		return item.body;
 	});
 
-	dom2json.parse(arr_html, "#block-system-main article", function ($item) {
+	dom2json.parse(arr_html, "#content tr", function ($item) {
+
+		var title = $item.find(".title a").text();
+		console.log(title);
 		return {
-			test: "true"
+			title: title
 		}
 	});
 });
-
-// requestPages.parse([
-// 	"http://www.billboard.com/charts/hot-100?page=0",
-// 	"http://www.billboard.com/charts/hot-100?page=1",
-// 	"http://www.billboard.com/charts/hot-100?page=2",
-// 	"http://www.billboard.com/charts/hot-100?page=3"
-// ], 10, "#block-system-main article", {
-// 	"id": {
-// 		attr: "id"
-// 	},
-// 	"cover_src": {
-// 		selector: "header .img-wrap img",
-// 		attr: "src"
-// 	}
-// }, function (data) {
-// 	console.log(data.length);
-// });
-
-
-// FeedParser.parse("http://www.boxofficemojo.com/data/rss.php?file=topstories.xml", function (data) {
-// 	console.log(data);
-// })
-
-
-
-app.get("/test", function (req, res) {})
-
 
 app.listen(8000);
