@@ -10,7 +10,7 @@ var url = "http://www.douban.com/group/beijingzufang/discussion?start=50";
 
 request({
     'url': url,
-    'encoding': null,
+    'encoding': "ISO-8859-1",
     'headers': {
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
         'Accept-Encoding': 'gzip,deflate,sdch',
@@ -22,5 +22,6 @@ request({
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36'
     }
 }, function(err, response, body) {
-    console.log(body.toString("ISO-8859-1"));
+    // console.log(body.toString("ISO-8859-1"));
+    console.log(body);
 })
