@@ -10,7 +10,7 @@ var checkComplete = function () {
 		return true;
 	}
 	return false;
-}
+};
 
 
 var fetch = function (url, callback) {
@@ -21,20 +21,23 @@ var fetch = function (url, callback) {
 
 		// 如果异步调用回调函数，则每请求一次调用回调函数
 		if (ASYNC) {
-			callback(body);	
+			callback({
+				url: url,
+				body: body
+			});
 		// 否则，等待所有结果返回后再调用回调函数
-		} else{
+		} else {
 			DATA.push({
 				url: url,
 				body: body
-			});				
+			});
 
 			if (checkComplete()) {
 				callback(DATA);
 			}			
 		}
 	});	
-}
+};
 
 exports.parse = function (pageArr, callback, options) {
 
@@ -47,5 +50,5 @@ exports.parse = function (pageArr, callback, options) {
 
 	pageArr.forEach(function (url) {
 		fetch(url, callback);
-	})
-}
+	});
+};
