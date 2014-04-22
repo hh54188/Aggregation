@@ -1,4 +1,5 @@
 var express = require('express');
+var path = require('path');
 
 var app = express();
 app.use(express.static(path.join(__dirname, 'public')));
@@ -16,18 +17,15 @@ page2dom.parse([
     // "http://www.billboard.com/charts/hot-100?page=1",
     // "http://www.billboard.com/charts/hot-100?page=2",
     "http://www.douban.com/group/beijingzufang/discussion?start=50"
-], function(url_and_body) {
-
-    var arr_html = url_and_body.map(function(item) {
-        return item.body;
-    });
+    // "http://tieba.baidu.com/f?kw=javascript&fr=ala0"
+], function(arr_html) {
 
     dom2json.parse(arr_html, "#content tr", function($item) {
 
         var title = $item.find(".title a").text();
-        console.log(title);
+        // console.log(title);
         return {
             title: title
-        }
+        };
     });
 });
