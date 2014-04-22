@@ -2,6 +2,8 @@
     HOW TO USE:
     page2dom.parse(pageArr, callback, options);
 
+
+    PARAMETERS:
     1. pageArr: 想要抓取的url数组：
     [
         http://expamle1.com,
@@ -9,12 +11,13 @@
         http://expamle1.com
     ]
 
-    2. callback(url_and_body):
+    2. callback(arr_body):
     处理抓取结果的函数, 传入参数为html片段数组：
     [
         body: "<html>...</html>",
         body: "<html>...</html>"
     ]
+
     
     TODO: 
     options = {
@@ -25,45 +28,59 @@
 
 */
 var request = require('request');
-var iconv = require('iconv');
 
-var PAGE_COUNT = 0, // 请求url总个数，
-    COMPLETE_COUNT = 0,
-    _result = [];
+function ConvertConstructFn(pageArr, callback) {
 
-var checkComplete = function () {
-    if (!--COMPLETE_COUNT) {
+    this._pageArr = pageArr;
+    this._callback = callback;
+
+    this.startFetch();
+}
+
+// 暴露此接口用于多次调用
+ConvertConstructFn.prototype.startFetch = function () {
+
+    var _this = this,
+        pageArr = this._pageArr,
+        callback = this._callback;
+
+    this.result = [];
+    this.complete_count = pageArr.length;
+
+    pageArr.forEach(function (url) {
+        _this._fetch(url, callback);
+    });
+};
+
+
+ConvertConstructFn.prototype._checkComplete = function () {
+    if (!--this.complete_count) {
         return true;
     }
     return false;
 };
 
 
-var fetch = function (url, callback) {
+ConvertConstructFn.prototype._fetch = function (url, callback) {
+    var _this = this;
 
     request({
         'url': url,
         'encoding': "utf8",
         'headers': {
-            'User-Agent':'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36'
+            // 豆瓣屏蔽了抓取，需要提供user-agent
+            'User-Agent':'Mozilla/5.0 (Windows NT 6.1; rv:31.0) Gecko/20100101 Firefox/31.0'
         }
     }, function (err, response, body) {
 
-        _result.push(body);
+        _this.result.push(body);
 
-        if (checkComplete()) {
-            callback(_result);
+        if (_this._checkComplete()) {
+            callback(_this.result);
         }
     });
 };
 
-exports.parse = function (pageArr, callback, options) {
-
-    _result = [];
-    PAGE_COUNT = pageArr.length;
-    COMPLETE_COUNT = PAGE_COUNT;
-
-    pageArr.forEach(function (url) {
-        fetch(url, callback);
-    });
+module.exports = {
+    Convert: ConvertConstructFn
 };

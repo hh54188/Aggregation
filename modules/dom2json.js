@@ -30,29 +30,42 @@
 
 */
 var cheerio = require('cheerio');
-var result = [];
 
-exports.parse = function (arr_html, selector, selector_result_handle) {
+var isObject = function (tar) {
+	return Object.prototype.toString.call(tar) == "[object Object]"? true: false;
+};
+
+var isEmptyObj = function (tar) {
+	for (var key in tar) {
+		return false;
+	}
+
+	return true;
+};
+
+exports.parse = function (arr_html, selector, selectorResultHandle) {
+
+	var result = [];
 
 	arr_html.forEach(function (html) {
+
 		var $ = cheerio.load(html);
 		var items = $(selector);
+		var customAttrs = {};
 
-		var temp = items.map(function (index, item) {
-			console.log($(item).find(".threadlist_title").text());
+		var format = items.map(function (index, item) {
+			
+			customAttrs = selectorResultHandle($(item));
 
-			var obj = selector_result_handle($(item));
-
-			for (var key in obj) {
-				item.attribs[key] = obj[key];
+			// 添加自定义属性
+			if (isObject(customAttrs)) {
+				return customAttrs;
 			}
-
-			item.attribs.tagName = item.name;
-
-			return item.attribs;
 		});
 
-		result.push(temp);
+		if (!isEmptyObj(format)) {
+			result.push(format);
+		}
 	});
 
 	return result;
