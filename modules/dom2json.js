@@ -1,4 +1,6 @@
 /*
+	从dom中提取出需要信息，并且转化为json数据
+
 	HOW TO USE:
 	page2dom.parse(arr_html, selector, selector_result_handle)
 	
@@ -31,42 +33,42 @@
 */
 var cheerio = require('cheerio');
 
-var isObject = function (tar) {
-	return Object.prototype.toString.call(tar) == "[object Object]"? true: false;
+var isObject = function(tar) {
+    return Object.prototype.toString.call(tar) == "[object Object]" ? true : false;
 };
 
-var isEmptyObj = function (tar) {
-	for (var key in tar) {
-		return false;
-	}
+var isEmptyObj = function(tar) {
+    for (var key in tar) {
+        return false;
+    }
 
-	return true;
+    return true;
 };
 
-exports.parse = function (arr_html, selector, selectorResultHandle) {
+exports.parse = function(arr_html, selector, selectorResultHandle) {
 
-	var result = [];
+    var result = [];
 
-	arr_html.forEach(function (html) {
+    arr_html.forEach(function(html) {
 
-		var $ = cheerio.load(html);
-		var items = $(selector);
-		var customAttrs = {};
+        var $ = cheerio.load(html);
+        var items = $(selector);
+        var customAttrs = {};
 
-		var format = items.map(function (index, item) {
-			
-			customAttrs = selectorResultHandle($(item));
+        var formatArr = items.map(function(index, item) {
 
-			// 添加自定义属性
-			if (isObject(customAttrs)) {
-				return customAttrs;
-			}
-		});
+            customAttrs = selectorResultHandle($(item));
 
-		if (!isEmptyObj(format)) {
-			result.push(format);
-		}
-	});
+            // 添加自定义属性
+            if (isObject(customAttrs) && !isEmptyObj(customAttrs)) {
+                return customAttrs;
+            }
 
-	return result;
+            return {};
+        });
+
+        result = result.concat(formatArr)
+    });
+
+    return result;
 };

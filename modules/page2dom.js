@@ -1,4 +1,6 @@
 /*
+    抓取页面，存储html为字符串
+
     HOW TO USE:
     page2dom.parse(pageArr, callback, options);
 
@@ -38,7 +40,7 @@ function ConvertConstructFn(pageArr, callback) {
 }
 
 // 暴露此接口用于多次调用
-ConvertConstructFn.prototype.startFetch = function () {
+ConvertConstructFn.prototype.startFetch = function() {
 
     var _this = this,
         pageArr = this._pageArr,
@@ -47,13 +49,13 @@ ConvertConstructFn.prototype.startFetch = function () {
     this.result = [];
     this.complete_count = pageArr.length;
 
-    pageArr.forEach(function (url) {
+    pageArr.forEach(function(url) {
         _this._fetch(url, callback);
     });
 };
 
 
-ConvertConstructFn.prototype._checkComplete = function () {
+ConvertConstructFn.prototype._checkComplete = function() {
     if (!--this.complete_count) {
         return true;
     }
@@ -61,7 +63,7 @@ ConvertConstructFn.prototype._checkComplete = function () {
 };
 
 
-ConvertConstructFn.prototype._fetch = function (url, callback) {
+ConvertConstructFn.prototype._fetch = function(url, callback) {
     var _this = this;
 
     request({
@@ -69,9 +71,9 @@ ConvertConstructFn.prototype._fetch = function (url, callback) {
         'encoding': "utf8",
         'headers': {
             // 豆瓣屏蔽了抓取，需要提供user-agent
-            'User-Agent':'Mozilla/5.0 (Windows NT 6.1; rv:31.0) Gecko/20100101 Firefox/31.0'
+            'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; rv:31.0) Gecko/20100101 Firefox/31.0'
         }
-    }, function (err, response, body) {
+    }, function(err, response, body) {
 
         _this.result.push(body);
 

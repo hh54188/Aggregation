@@ -21,5 +21,8 @@
     "xml2js": "~0.4.0",
     "cheerio": "~0.12.4",
     "request": "~2.29.0"
+  },
+  "devDependencies": {
+    "cheerio": "~0.12.4"
   }
 }
