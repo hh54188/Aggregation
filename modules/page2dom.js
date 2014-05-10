@@ -31,7 +31,12 @@
 */
 var request = require('request');
 
+var isArray = function (obj) {
+    return Object.prototype.toString.call(obj) == "[object Array]"? true: false;
+}
+
 function ConvertConstructFn(pageArr, callback) {
+    if (!isArray(pageArr)) pageArr = [pageArr];
 
     this._pageArr = pageArr;
     this._callback = callback;

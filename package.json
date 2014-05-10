@@ -17,12 +17,13 @@
   },
   "homepage": "https://github.com/hh54188/Aggregation",
   "dependencies": {
-    "express": "~3.4.7",
+    "express": "~4.1.1",
     "xml2js": "~0.4.0",
     "cheerio": "~0.12.4",
     "request": "~2.29.0"
   },
   "devDependencies": {
-    "cheerio": "~0.12.4"
+    "cheerio": "~0.12.4",
+    "express": "~3.4.8"
   }
 }
