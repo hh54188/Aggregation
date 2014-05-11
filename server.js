@@ -1,5 +1,6 @@
-var Convert = require("./modules/page2dom").Convert;
 var cheerio = require('cheerio');
+var md5 = require('MD5');
+var Convert = require("./modules/page2dom").Convert;
 var config = require("./config/config");
 
 function siteCollector(site) {
@@ -43,6 +44,8 @@ function siteCollector(site) {
                 return {
                     title: _title,
                     href: _href,
+                    hash: md5(_title + meta.url), 
+                    //For checking if saved already (source:href)
                     timestamp: +new Date(),
                     meta: meta
                 };
@@ -61,7 +64,7 @@ function allocateSchedule(task, interval) {
 for (var category in config) {
     var websites = config[category];
     websites.forEach(function (site) {
-        var interval = site.updateInterval || 10; // minutes
+        var interval = site.updateInterval || 10; //In minutes
         allocateSchedule(function () {
             siteCollector(site, interval);
         });
