@@ -1,7 +1,13 @@
+// Global:
 var cheerio = require('cheerio');
 var md5 = require('MD5');
-var Convert = require("./modules/page2dom").Convert;
+
+// Config:
 var config = require("./config/config");
+
+// Module:
+var Convert = require("./modules/page2dom").Convert;
+
 
 function siteCollector(site) {
 
@@ -34,18 +40,17 @@ function siteCollector(site) {
                 item = $(item);
 
                 var _title = item.text() || item.attr("title");
-                var _href = item.attr("href") || hrefs[index];
+                var _url = item.attr("href") || hrefs[index];
 
                 // In case of relative url
-                if (!(/http|https/.test(_href))) {
-                    _href = url + (/\/$/.test(url)? "": "/") + _href;
+                if (!(/http|https/.test(_url))) {
+                    _url = url + (/\/$/.test(url)? "": "/") + _url;
                 }
 
                 return {
                     title: _title,
-                    href: _href,
-                    hash: md5(_title + meta.url), 
-                    //For checking if saved already (source:href)
+                    url: _url,
+                    hash: md5(_title + meta.url), //For checking if saved already (source:href)
                     timestamp: +new Date(),
                     meta: meta
                 };
@@ -56,7 +61,7 @@ function siteCollector(site) {
 
 function allocateSchedule(task, interval) {
     task();
-    setTimeout(function () {
+    setInterval(function () {
         task();
     }, interval);
 }
