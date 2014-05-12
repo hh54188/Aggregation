@@ -88,6 +88,4 @@ ConvertConstructFn.prototype._fetch = function(url, callback) {
     });
 };
 
-module.exports = {
-    Convert: ConvertConstructFn
-};
+module.exports = ConvertConstructFn;

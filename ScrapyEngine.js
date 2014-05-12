@@ -1,15 +1,16 @@
-// Global:
+// Global Module:
 var cheerio = require('cheerio');
 var md5 = require('MD5');
 
-// Config:
-var config = require("./config/config");
+var config = require("./config/config");      // Config
+var Convert = require("./modules/page2dom");  // Scrapy
+var Operator = require("./db/NewsOperator");  // DB Operate
 
-// Module:
-var Convert = require("./modules/page2dom").Convert;
+// Local Variable:
+var op = new Operator();
 
 
-function siteCollector(site) {
+function siteCollector(site, category_id, category_name) {
 
     var url = site.website;
     var name = site.aka;
@@ -18,7 +19,9 @@ function siteCollector(site) {
     var meta = {
         url: url,
         name: name,
-        updateInterval: updateInterval
+        updateInterval: updateInterval,
+        category_id: category_id,
+        category_name: category_name
     };
 
     var selector = site.selector;
@@ -51,10 +54,12 @@ function siteCollector(site) {
                     title: _title,
                     url: _url,
                     hash: md5(_title + meta.url), //For checking if saved already (source:href)
-                    timestamp: +new Date(),
+                    date: +new Date(),
                     meta: meta
                 };
             });
+
+            op.save(result);
         });
     });
 }
@@ -63,15 +68,20 @@ function allocateSchedule(task, interval) {
     task();
     setInterval(function () {
         task();
-    }, interval);
+    }, interval * 60 * 1000);
 }
 
-for (var category in config) {
-    var websites = config[category];
+for (var category_id in config) {
+
+    var websites = config[category_id].websites;
+    var category_id = category_id,
+        category_name = config[category_id].aka;
+
     websites.forEach(function (site) {
         var interval = site.updateInterval || 10; //In minutes
+
         allocateSchedule(function () {
-            siteCollector(site, interval);
-        });
+            siteCollector(site, category_id, category_name);
+        }, interval);
     });
 }

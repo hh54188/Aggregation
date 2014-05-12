@@ -9,11 +9,13 @@ NewsSchema = mongoose.Schema({
             unique: true
         }
     },
-    timestamp: Number,          // The time create this news
+    date: Number,               // The time create this news
     meta: {
         website: String,        // From which website
         aka: String,            // The website name
-        updateInterval: Number  // The time interval to update
+        updateInterval: Number, // The time interval to update,
+        category_id: String,
+        category_name: String
     }
 });
 
