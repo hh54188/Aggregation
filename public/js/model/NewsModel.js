@@ -8,7 +8,7 @@ var News = Backbone.Model.extend({
             website: "",
             aka: "",
             updateInterval: "",
-            category_id: "",
+            category_code: "",
             category_name: ""
         }
     },

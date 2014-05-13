@@ -1,0 +1,15 @@
+.news-list-container {
+	width: 100%;
+	float: left;
+}
+.news-list {
+	margin-left: 200px;
+}
+.news-category {
+	width: 200px;
+	float: left;
+	margin-left: -100%;
+	background: #F9F9F9;
+	height: 100%;
+	border-right: 1px solid #c0c0c0;
+}

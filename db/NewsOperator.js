@@ -37,4 +37,4 @@ Operator.prototype.find = function (page) {
     });
 }
 
-module.exports = Operator;
+module.exports = Operator; // Exports Constructor Function 

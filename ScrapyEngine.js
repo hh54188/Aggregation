@@ -10,7 +10,7 @@ var Operator = require("./db/NewsOperator");  // DB Operate
 var op = new Operator();
 
 
-function siteCollector(site, category_id, category_name) {
+function siteCollector(site, category_code, category_name) {
 
     var url = site.website;
     var name = site.aka;
@@ -20,7 +20,7 @@ function siteCollector(site, category_id, category_name) {
         url: url,
         name: name,
         updateInterval: updateInterval,
-        category_id: category_id,
+        category_code: category_code,
         category_name: category_name
     };
 
@@ -71,17 +71,17 @@ function allocateSchedule(task, interval) {
     }, interval * 60 * 1000);
 }
 
-for (var category_id in config) {
+for (var category_code in config) {
 
-    var websites = config[category_id].websites;
-    var category_id = category_id,
-        category_name = config[category_id].aka;
+    var websites = config[category_code].websites;
+    var category_code = category_code,
+        category_name = config[category_code].aka;
 
     websites.forEach(function (site) {
         var interval = site.updateInterval || 10; //In minutes
 
         allocateSchedule(function () {
-            siteCollector(site, category_id, category_name);
+            siteCollector(site, category_code, category_name);
         }, interval);
     });
 }

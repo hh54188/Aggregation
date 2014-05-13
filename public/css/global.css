@@ -1,0 +1,30 @@
+body {
+	font-size: 100%;
+	font-family: "Helvetica Neue",Helvetica,Arial,Sans-serif;
+	background: #F0F5F9;
+	height: 100%;
+}
+/*
+	Make body have 100% of the browser height:
+	http://stackoverflow.com/questions/6654958/make-body-have-100-of-the-browser-height
+*/
+html, body
+{
+    height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+
+ul {
+	padding: 0;
+}
+
+li {
+	list-style-type: none;
+}
+
+a {
+	text-decoration: none;
+}

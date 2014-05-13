@@ -14,7 +14,7 @@ NewsSchema = mongoose.Schema({
         website: String,        // From which website
         aka: String,            // The website name
         updateInterval: Number, // The time interval to update,
-        category_id: String,
+        category_code: String,
         category_name: String
     }
 });

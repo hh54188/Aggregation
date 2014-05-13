@@ -5,8 +5,58 @@
     <script type="text/javascript" src="/js/lib/jquery.js"></script>
     <script type="text/javascript" src="/js/lib/underscore.js"></script>
     <script type="text/javascript" src="/js/lib/backbone.js"></script>
+
+    <script type="text/javascript" src="/js/model/NewsModel.js"></script>
+    <script type="text/javascript" src="/js/collection/NewsCollection.js"></script>
+    <script type="text/javascript" src="/js/view/NewsView.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/global.css">
+    <link rel="stylesheet" type="text/css" href="/css/layout.css">
+    <link rel="stylesheet" type="text/css" href="/css/nav.css">
+    <link rel="stylesheet" type="text/css" href="/css/panel-news.css">
 </head>
 <body>
-
+	<div id="panel">
+		<div id="panel-container">
+			<!-- News Panel Begin -->
+			<div class="panel-news">
+				<div class="news-list-container">
+					<ul class="news-list">
+						<li>
+							<a href="javascript:void(0)">news1</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)">news1</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)">news1</a>
+						</li>
+					</ul>
+				</div>
+				<div class="news-category">
+					<ul>
+						<li><a href="javascript:void(0)">category1</a></li>
+						<li><a href="javascript:void(0)">category1</a></li>
+						<li><a href="javascript:void(0)">category1</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- News Panel End -->
+		</div>
+	</div>	
+	<div id="nav">
+		<ul class="nav-menu">
+			<li>
+				<a href="javascript:void(0)" class="nav-menu-item selected" href="">All</a>
+			</li>
+			<li>
+				<a href="javascript:void(0)" class="nav-menu-item" href="">Menu1</a>
+			</li>
+			<li>
+				<a href="javascript:void(0)" class="nav-menu-item" href="">Menu2</a>
+			</li>
+		</ul>
+	</div>
 </body>
 </html>
