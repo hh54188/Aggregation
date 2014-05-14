@@ -1,3 +1,5 @@
+
+
 var News = Backbone.Model.extend({
     defaults: {
         title: "",

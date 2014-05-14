@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var NewsSchema = require("./NewsSchema");
+var NewsModel = require("./NewsModel");
 
 var db;
 
@@ -21,7 +21,7 @@ function Operator() {
 
 Operator.prototype.save = function (data) {
     data.forEach(function (item) {
-        new NewsSchema(item).save(function (err, doc) {
+        new NewsModel(item).save(function (err, doc) {
             console.log("saved");
         });
     });
@@ -30,7 +30,7 @@ Operator.prototype.save = function (data) {
 Operator.prototype.find = function (page) {
     page = page || 0;
 
-    NewsSchema.find({}).sort({ 
+    NewsModel.find({}).sort({ 
         date: -1 
     }).skip(SKIP_NUM * page).limit(LIMIT_NUM).exec(function (err, docs) {
         console.log(err, docs.length);
