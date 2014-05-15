@@ -1,16 +1,29 @@
-#panel {
+.main {
 	width: 100%;
 	float: left;
+	background: #F7F7F7;
+
 	height: 100%;
 }
-#panel-container {
-	margin-left: 200px;
-	overflow: hidden; /*Expend the div, include the float element*/
+.content {
+	margin-left: 230px;
+	margin-right: 360px;
+
 	height: 100%;
 }
-#nav {
-	width: 200px;
+.nav {
+	width: 230px;
 	float: left;
 	margin-left: -100%;
+	background: #2A2D33;
+
+	height: 100%;
+}
+.side {
+	width: 360px;
+	float: left;
+	margin-left: -360px;
+	background: #EDEDED;
+
 	height: 100%;
 }
