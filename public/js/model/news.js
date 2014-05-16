@@ -1,6 +1,6 @@
+var app = app || {};
 
-
-var News = Backbone.Model.extend({
+app.News = Backbone.Model.extend({
     defaults: {
         title: "",
         url: "",

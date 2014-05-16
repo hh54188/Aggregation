@@ -10,6 +10,7 @@
 	margin-right: 360px;
 
 	height: 100%;
+	overflow: auto;
 }
 .nav {
 	width: 230px;

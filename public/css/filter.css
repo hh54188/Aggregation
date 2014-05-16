@@ -1,0 +1,33 @@
+.filter {
+	margin: 0 30px;
+	color: #888888;
+}
+
+.filter-section {
+	margin-bottom: 20px;
+}
+
+.filter-section-title {
+	border-bottom: 1px solid #888888;
+	height: 35px;
+	line-height: 35px;
+}
+
+.filter-section-item {
+	font-size: 14px;
+	height: 35px;
+	line-height: 35px;
+	cursor: pointer;
+}
+
+.filter-section-item-ckbox {
+	vertical-align: middle;
+}
+
+.filter-section-item-img {
+	width: 16px;
+	height: 16px;
+	background: url(http://www.google.com/s2/favicons);
+	margin: 0 5px;
+	vertical-align: middle;
+}

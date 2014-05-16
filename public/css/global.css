@@ -1,7 +1,7 @@
 body {
 	font-size: 100%;
-	font-family: "Helvetica Neue",Helvetica,Arial,Sans-serif;
-	background: #F0F5F9;
+	font-family: "微软雅黑", "Hiragino SansGB", "Helvetica Neue",Helvetica,Arial,Sans-serif;
+	background: #F7F7F7;
 	height: 100%;
 }
 /*
@@ -11,14 +11,20 @@ body {
 html, body
 {
     height: 100%;
+    overflow: hidden;
 }
 
 body {
   min-height: 100%;
 }
 
+p {
+	margin: 0;
+}
+
 ul {
 	padding: 0;
+	margin: 0;
 }
 
 li {

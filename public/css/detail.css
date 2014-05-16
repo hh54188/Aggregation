@@ -1,0 +1,45 @@
+.detail {
+	margin: 30px 30px;
+	color: #888888;
+}
+
+.detail-table {
+	width: 100%;
+	table-layout: fixed;
+}
+
+.detail-table th, .detail-table td {
+	text-align: left;
+	white-space: nowrap;
+
+  	overflow: hidden;
+  	text-overflow: ellipsis;	
+}
+
+.detail-table tr {
+	height: 1.7em;
+}
+
+.detail-table tr.odd {
+	background: white;
+}
+
+.detail-table tr span, .detail-table th span {
+	padding: 0 30px;
+}
+
+.detail-table-col_title {
+	width: 60%;
+}
+
+.detail-table-col_time {
+	width: 20%;
+}
+
+.detail-table-col_source {
+	width: 20%;
+}
+
+.detail-table tr:hover {
+	background: #EDEDED;
+}

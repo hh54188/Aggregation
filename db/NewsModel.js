@@ -3,13 +3,11 @@ var mongoose = require('mongoose');
 NewsSchema = mongoose.Schema({
     title: String,
     url: String,
-    hash: {
-        type: [String],
-        index: {
-            unique: true
-        }
+    hash: [String],
+    date: {
+        type: [Number],
+        index: true
     },
-    date: Number,               // The time create this news
     meta: {
         website: String,        // From which website
         aka: String,            // The website name

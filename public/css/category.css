@@ -1,0 +1,34 @@
+.category {
+	margin-top: 0;
+}
+
+.category-section {
+	margin-bottom: 20px;
+}
+
+.category-section-title {
+	padding: 0 30px;
+	color: #595E6A;
+	border-bottom: 1px solid #414449;
+	height: 35px;
+	line-height: 35px;
+}
+
+.category-section-item {
+	height: 35px;
+	line-height: 35px;
+	color: #B2ACAB;
+
+	padding: 0 30px;
+
+	display: block; /* reset <a> display style */
+}
+
+.category-section-item:hover {
+	color: white;
+}
+
+.category-section-item.selected {
+	background: #656C7E;
+	color: white;
+}
