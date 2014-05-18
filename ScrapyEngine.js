@@ -13,12 +13,13 @@ var op = new Operator();
 function siteCollector(site, category_code, category_name) {
 
     var url = site.website;
-    var name = site.aka;
     var updateInterval = site.updateInterval;
 
     var meta = {
         url: url,
-        name: name,
+        id: site.id,
+        icon: site.icon,
+        name: site.aka,
         updateInterval: updateInterval,
         category_code: category_code,
         category_name: category_name
@@ -53,13 +54,13 @@ function siteCollector(site, category_code, category_name) {
                 return {
                     title: _title,
                     url: _url,
-                    hash: md5(_title + meta.url), //For checking if saved already (source:href)
+                    hash: md5(meta.id + ":" + _title), //For checking if saved already (source:href)
                     date: +new Date(),
                     meta: meta
                 };
             });
-
-            op.save(result);
+            console.log(result);
+            // op.save(result);
         });
     });
 }

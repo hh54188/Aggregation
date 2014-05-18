@@ -1,9 +1,11 @@
 var config = {
-    "pcgame": {
+    "game": {
         aka: "游戏",
         websites: [
             {
                 website: "http://www.gamersky.com/",
+                id: "gamersky",
+                icon: "http://www.google.com/s2/favicons?domain=www.gamersky.com",
                 aka: "游民星空",
                 updateInterval: 10, //by minutes
                 selector: [

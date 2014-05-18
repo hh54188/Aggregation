@@ -7,7 +7,7 @@
 }
 .content {
 	margin-left: 230px;
-	margin-right: 360px;
+	margin-right: 230px;
 
 	height: 100%;
 	overflow: auto;
@@ -21,9 +21,9 @@
 	height: 100%;
 }
 .side {
-	width: 360px;
+	width: 230px;
 	float: left;
-	margin-left: -360px;
+	margin-left: -230px;
 	background: #EDEDED;
 
 	height: 100%;
