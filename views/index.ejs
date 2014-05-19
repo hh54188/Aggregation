@@ -21,6 +21,10 @@
     <script type="text/javascript" src="/js/collection/news.js"></script>
 
     <script type="text/javascript" src="/js/view/app.js"></script> <!--Boot-->
+    <script type="text/javascript">
+        window.app = <%- JSON.stringify(list) %>
+        window.config = <%- JSON.stringify(config) %>
+    </script>
 
 </head>
 <body>
@@ -30,16 +34,15 @@
                 <table class="detail-table">
                     <tbody>
                         <% list.forEach(function (data, index) { %>
-                            <% var oddClass = index % 2 == 0? "": "odd" %>
-                            <tr class='<%= oddClass %>'>
+                            <tr class='<%= helper.isOdd(index) %>'>
                                 <td class="detail-table-col_title">
-                                    <span><a target="_blank" href="<%= data.url %>"><%= data.title %></a></span>
+                                    <span><a class="detail-table-link-primary" target="_blank" href="<%= data.url %>"><%= data.title %></a></span>
                                 </td>
                                 <td class="detail-table-col_time">
-                                    <span><%= dateFormat(data.date) %></span>
+                                    <span><%= helper.dateFormat(data.date) %></span>
                                 </td>
                                 <td class="detail-table-col_source">
-                                    <span><a target="_blank" href="<%= data.meta.url %>"><%= data.meta.name %></a></span>
+                                    <span><a class="detail-table-link-secondary" target="_blank" href="<%= data.meta.url %>"><%= data.meta.name %></a></span>
                                 </td>
                             </tr>                            
                         <% }) %>
@@ -52,28 +55,35 @@
         <div class="category">
             <div class="category-section">
                 <div class="category-section-title">
-                    <p>category</p>
+                    <p>常用</p>
                 </div>
                 <div class="category-section-list">
                     <ul>
-                        <li><a href="javascript:void(0);" class="category-section-item selected">caegory</a></li>
-                        <li><a href="javascript:void(0);" class="category-section-item">caegory</a></li>
-                        <li><a href="javascript:void(0);" class="category-section-item">caegory</a></li>
+                        <li><a href="javascript:void(0);" class="category-section-item selected">所有</a></li>
+                        <% for (var category in config) { %>
+                        <% var category_name = config[category].aka; %>
+                            <li><a href="javascript:void(0);" class="category-section-item" title="<%= category_name %>"><%= category_name %></a></li>
+                        <% } %>
                     </ul>
                 </div>
             </div>
             <div class="category-section">
                 <div class="category-section-title">
-                    <p>category</p>
+                    <p>各种排行榜</p>
                 </div>
                 <div class="category-section-list">
                     <ul>
-                        <li><a href="javascript:void(0);" class="category-section-item">caegory</a></li>
-                        <li><a href="javascript:void(0);" class="category-section-item">caegory</a></li>
-                        <li><a href="javascript:void(0);" class="category-section-item">caegory</a></li>
+                        <li><a href="javascript:void(0);" class="category-section-item" title="Billboard">Billboard</a></li>
+                        <!-- http://www.boxofficemojo.com/weekend/chart/ -->
+                        <li><a href="javascript:void(0);" class="category-section-item" title="北美票房(Box Office Mojo版)">北美票房(Box Office Mojo)</a></li>
+                        <!-- https://www.yahoo.com/movies/box-office -->
+                        <li><a href="javascript:void(0);" class="category-section-item" title="北美票房(yahoo版)">北美票房(yahoo版)</a></li>
+                        <!-- http://www.slbook1996.com/book/allbang.htm -->
+                        <li><a href="javascript:void(0);" class="category-section-item" title="三联版图书榜">三联版图书榜</a></li>
+                        <li><a href="javascript:void(0);" class="category-section-item" title="三联畅销书榜">三联畅销书榜</a></li>
                     </ul>
                 </div>
-            </div>            
+            </div>           
         </div>
     </div>
     <div class="side">

@@ -1,5 +1,5 @@
 .detail {
-	margin: 30px 30px;
+	margin: 0 30px;
 	color: #888888;
 	font-size: 14px;
 }
@@ -7,14 +7,6 @@
 .detail-table {
 	width: 100%;
 	table-layout: fixed;
-}
-
-.detail-table th, .detail-table td {
-	text-align: left;
-	white-space: nowrap;
-
-  	overflow: hidden;
-  	text-overflow: ellipsis;	
 }
 
 /*
@@ -30,11 +22,19 @@
 	但我在调试中发现30px是差不多正好的
 	而百度音乐用的height(+line-height)也是30px
 
-	就决定30px了！
+	就决定30px了
 */
 .detail-table tr {
 	height: 30px;
 	line-height: 30px;
+}
+
+.detail-table th, .detail-table td {
+	text-align: left;
+	white-space: nowrap;
+
+  	overflow: hidden;
+  	text-overflow: ellipsis;	
 }
 
 .detail-table tr.odd {
@@ -43,6 +43,24 @@
 
 .detail-table tr span, .detail-table th span {
 	padding: 0 30px;
+}
+
+/*
+	when will “a” tag not inherit color attribute of parent tag?
+	http://stackoverflow.com/questions/1144931/when-will-a-tag-not-inherit-color-attribute-of-parent-tag
+
+	BTW: a {color: inherit; } will work, but only in IE7+;
+*/
+.detail-table-link-primary {
+	color: #444444;
+}
+
+.detail-table-link-primary:visited {
+	color: #888888;
+}
+
+.detail-table-link-secondary {
+	color: #888888;
 }
 
 .detail-table-col_title {

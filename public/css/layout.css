@@ -18,6 +18,7 @@
 	background: #2A2D33;
 
 	height: 100%;
+	overflow: auto;
 }
 .side {
 	width: 250px;

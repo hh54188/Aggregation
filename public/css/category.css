@@ -22,6 +22,10 @@
 	padding: 0 30px;
 
 	display: block; /* reset <a> display style */
+
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
 .category-section-item:hover {
