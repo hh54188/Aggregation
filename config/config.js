@@ -20,6 +20,11 @@ var config = {
                 ]
             }
         ]
+    },
+    "video": {
+        aka: "视频节目",
+        websites: [
+        ]
     }
 }
 

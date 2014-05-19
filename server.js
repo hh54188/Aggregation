@@ -14,6 +14,8 @@ var config = require("./config/config");
 // Custom Module:
 var helper = require("./modules/pageHelper");
 
+// Boot:
+var app = express();
 
 // Server Config:
 app.set('view engine', 'ejs');
@@ -33,6 +35,4 @@ app.get("/news", function (req, res) {
 
 });
 
-// Boot:
-var app = express();
 app.listen(8000);
