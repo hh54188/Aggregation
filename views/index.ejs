@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/global.css">
+    <link rel="stylesheet" type="text/css" href="/css/layout.css">
+    <link rel="stylesheet" type="text/css" href="/css/scrollbar.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/category.css">
+    <link rel="stylesheet" type="text/css" href="/css/filter.css">
+    <link rel="stylesheet" type="text/css" href="/css/detail.css">
+
+    <script type="text/javascript" src="/js/lib/jquery.js"></script>
+    <script type="text/javascript" src="/js/lib/underscore.js"></script>
+    <script type="text/javascript" src="/js/lib/backbone.js"></script>
+
+    <script type="text/javascript" src="/js/model/news.js"></script>
+    <script type="text/javascript" src="/js/view/news.js"></script>
+    <script type="text/javascript" src="/js/collection/news.js"></script>
+
+    <script type="text/javascript" src="/js/view/app.js"></script> <!--Boot-->
+
+</head>
+<body>
+	<div class="main">
+        <div class="content">
+            <div class="detail">
+                <table class="detail-table">
+                    <tbody>
+                        <% list.forEach(function (data, index) { %>
+                            <% var oddClass = index % 2 == 0? "": "odd" %>
+                            <tr class='<%= oddClass %>'>
+                                <td class="detail-table-col_title">
+                                    <span><a target="_blank" href="<%= data.url %>"><%= data.title %></a></span>
+                                </td>
+                                <td class="detail-table-col_time">
+                                    <span><%= dateFormat(data.date) %></span>
+                                </td>
+                                <td class="detail-table-col_source">
+                                    <span><a target="_blank" href="<%= data.meta.url %>"><%= data.meta.name %></a></span>
+                                </td>
+                            </tr>                            
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="nav">
+        <div class="category">
+            <div class="category-section">
+                <div class="category-section-title">
+                    <p>category</p>
+                </div>
+                <div class="category-section-list">
+                    <ul>
+                        <li><a href="javascript:void(0);" class="category-section-item selected">caegory</a></li>
+                        <li><a href="javascript:void(0);" class="category-section-item">caegory</a></li>
+                        <li><a href="javascript:void(0);" class="category-section-item">caegory</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="category-section">
+                <div class="category-section-title">
+                    <p>category</p>
+                </div>
+                <div class="category-section-list">
+                    <ul>
+                        <li><a href="javascript:void(0);" class="category-section-item">caegory</a></li>
+                        <li><a href="javascript:void(0);" class="category-section-item">caegory</a></li>
+                        <li><a href="javascript:void(0);" class="category-section-item">caegory</a></li>
+                    </ul>
+                </div>
+            </div>            
+        </div>
+    </div>
+    <div class="side">
+        <div class="filter">
+            <div class="filter-section">
+                <div class="filter-section-title">
+                    <p>筛选</p>
+                </div>
+                <div class="filter-section-list">
+                    <ul>
+                        <li class="filter-section-item">
+                            <input type="checkbox" class="filter-section-item-ckbox">
+                            <label class="filter-section-item-text">
+                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
+                            </label>
+                        </li>
+                        <li class="filter-section-item">
+                            <input type="checkbox" class="filter-section-item-ckbox">
+                            <label class="filter-section-item-text">
+                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
+                            </label>
+                        </li>
+                        <li class="filter-section-item">
+                            <input type="checkbox" class="filter-section-item-ckbox">
+                            <label class="filter-section-item-text">
+                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
+                            </label>
+                        </li>
+                        <li class="filter-section-item">
+                            <input type="checkbox" class="filter-section-item-ckbox">
+                            <label class="filter-section-item-text">
+                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
+                            </label>
+                        </li>
+                        <li class="filter-section-item">
+                            <input type="checkbox" class="filter-section-item-ckbox">
+                            <label class="filter-section-item-text">
+                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
+                            </label>
+                        </li>
+                        <li class="filter-section-item">
+                            <input type="checkbox" class="filter-section-item-ckbox">
+                            <label class="filter-section-item-text">
+                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
+                            </label>
+                        </li>
+                        <li class="filter-section-item">
+                            <input type="checkbox" class="filter-section-item-ckbox">
+                            <label class="filter-section-item-text">
+                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
+                            </label>
+                        </li>
+                        <li class="filter-section-item">
+                            <input type="checkbox" class="filter-section-item-ckbox">
+                            <label class="filter-section-item-text">
+                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
+                            </label>
+                        </li>
+                        <li class="filter-section-item">
+                            <input type="checkbox" class="filter-section-item-ckbox">
+                            <label class="filter-section-item-text">
+                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
+                            </label>
+                        </li>
+                        <li class="filter-section-item">
+                            <input type="checkbox" class="filter-section-item-ckbox">
+                            <label class="filter-section-item-text">
+                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
+                            </label>
+                        </li>
+                        <li class="filter-section-item">
+                            <input type="checkbox" class="filter-section-item-ckbox">
+                            <label class="filter-section-item-text">
+                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
+                            </label>
+                        </li>
+                        <li class="filter-section-item">
+                            <input type="checkbox" class="filter-section-item-ckbox">
+                            <label class="filter-section-item-text">
+                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
+                            </label>
+                        </li>                                                                                            
+                        <li class="filter-section-item">
+                            <input type="checkbox" class="filter-section-item-ckbox">
+                            <label class="filter-section-item-text">
+                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
+                            </label>
+                        </li>
+                        <li class="filter-section-item">
+                            <input type="checkbox" class="filter-section-item-ckbox">
+                            <label class="filter-section-item-text">
+                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
+                            </label>
+                        </li>
+                        <li class="filter-section-item">
+                            <input type="checkbox" class="filter-section-item-ckbox">
+                            <label class="filter-section-item-text">
+                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
+                            </label>
+                        </li>
+                        <li class="filter-section-item">
+                            <input type="checkbox" class="filter-section-item-ckbox">
+                            <label class="filter-section-item-text">
+                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
+                            </label>
+                        </li>
+                        <li class="filter-section-item">
+                            <input type="checkbox" class="filter-section-item-ckbox">
+                            <label class="filter-section-item-text">
+                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
+                            </label>
+                        </li>
+                        <li class="filter-section-item">
+                            <input type="checkbox" class="filter-section-item-ckbox">
+                            <label class="filter-section-item-text">
+                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
+                            </label>
+                        </li>
+                        <li class="filter-section-item">
+                            <input type="checkbox" class="filter-section-item-ckbox">
+                            <label class="filter-section-item-text">
+                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
+                            </label>
+                        </li>
+                        <li class="filter-section-item">
+                            <input type="checkbox" class="filter-section-item-ckbox">
+                            <label class="filter-section-item-text">
+                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
+                            </label>
+                        </li>
+                        <li class="filter-section-item">
+                            <input type="checkbox" class="filter-section-item-ckbox">
+                            <label class="filter-section-item-text">
+                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
+                            </label>
+                        </li>                                                 
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

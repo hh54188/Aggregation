@@ -59,7 +59,7 @@ function siteCollector(site, category_code, category_name) {
                     meta: meta
                 };
             });
-            console.log(result);
+            // console.log(result);
             // op.save(result);
         });
     });

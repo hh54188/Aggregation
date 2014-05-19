@@ -1,6 +1,7 @@
 .detail {
 	margin: 30px 30px;
 	color: #888888;
+	font-size: 14px;
 }
 
 .detail-table {
@@ -16,8 +17,24 @@
   	text-overflow: ellipsis;	
 }
 
+/*
+	如何定合适的line-height？
+	在这篇文章里面 http://practicaltypography.com/line-spacing.html
+	它建议line-height应该是1.2 - 1.4左右
+	
+	但这对中文字体仍然是感觉有些拥挤的
+
+	中文：http://jsfiddle.net/fsuv5/
+	英文：http://jsfiddle.net/fsuv5/1/
+
+	但我在调试中发现30px是差不多正好的
+	而百度音乐用的height(+line-height)也是30px
+
+	就决定30px了！
+*/
 .detail-table tr {
-	height: 1.7em;
+	height: 30px;
+	line-height: 30px;
 }
 
 .detail-table tr.odd {
