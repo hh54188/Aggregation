@@ -28,7 +28,10 @@ function siteCollector(site, category_code, category_name) {
     var selector = site.selector;
 
     new Convert(url, function(htmls) {
+
         var $ = cheerio.load(htmls[0]);
+        var result = [];
+
         selector.forEach(function (sel) {
 
             var titles,
@@ -40,7 +43,7 @@ function siteCollector(site, category_code, category_name) {
             titles = $(textSelector);
             hrefs = hrefSelector? $(hrefSelector).attr("href"): "";
 
-            var result = titles.map(function (index, item) {
+            titles.map(function (index, item) {
                 item = $(item);
 
                 var _title = item.text() || item.attr("title");
@@ -48,20 +51,24 @@ function siteCollector(site, category_code, category_name) {
 
                 // In case of relative url
                 if (!(/http|https/.test(_url))) {
-                    _url = url + (/\/$/.test(url)? "": "/") + _url;
+                    // _url = url + (/\/$/.test(url)? "": "/") + _url;
+                    _url = url + _url;
                 }
 
-                return {
+                var piece = {
                     title: _title,
                     url: _url,
                     hash: md5(meta.id + ":" + _title), //For checking if saved already (source:href)
                     date: +new Date(),
-                    meta: meta
+                    meta: meta                    
                 };
+
+                result.push(piece);
             });
-            // console.log(result);
-            // op.save(result);
         });
+
+        console.log(result);
+        // op.save(result);
     });
 }
 
