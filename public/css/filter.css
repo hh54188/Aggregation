@@ -20,9 +20,12 @@
 	cursor: pointer;
 }
 
-.filter-section-item-ckbox {
-	vertical-align: middle;
+.filter-section-item-text {
+	display:block;
+	height: 100%;
+	color: #888888;
 }
+
 
 .filter-section-item-img {
 	width: 16px;

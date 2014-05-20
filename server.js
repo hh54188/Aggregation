@@ -21,6 +21,22 @@ var app = express();
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
+// function convert2website(config) {
+// 	var result = [];
+// 	for (var category_code in config) {
+// 		var category = config[category_code];
+// 		var category_name = category.aka;
+// 		var websites = category.websites;
+// 		websites.forEach(function (site, index) {
+// 			result.push({
+// 				url: site.website,
+// 				id: site.id,
+// 				icon: site.icon
+// 			})
+// 		})
+// 	}
+// }
+
 
 // Route Config
 app.get("/", function (req, res) {

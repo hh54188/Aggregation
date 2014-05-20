@@ -11,19 +11,20 @@
     <link rel="stylesheet" type="text/css" href="/css/category.css">
     <link rel="stylesheet" type="text/css" href="/css/filter.css">
     <link rel="stylesheet" type="text/css" href="/css/detail.css">
-
+    <!-- Lib -->
     <script type="text/javascript" src="/js/lib/jquery.js"></script>
     <script type="text/javascript" src="/js/lib/underscore.js"></script>
     <script type="text/javascript" src="/js/lib/backbone.js"></script>
-
+    <!-- News -->
     <script type="text/javascript" src="/js/model/news.js"></script>
     <script type="text/javascript" src="/js/view/news.js"></script>
     <script type="text/javascript" src="/js/collection/news.js"></script>
-
-    <script type="text/javascript" src="/js/view/app.js"></script> <!--Boot-->
+    <!-- Route -->
+    <script type="text/javascript" src="/js/router.js"></script>
+    <!-- Boot -->
+    <script type="text/javascript" src="/js/view/app.js"></script>
     <script type="text/javascript">
-        window.app = <%- JSON.stringify(list) %>
-        window.config = <%- JSON.stringify(config) %>
+        app.presenter.initNewsList(<%- JSON.stringify(list) %>);
     </script>
 
 </head>
@@ -32,7 +33,7 @@
         <div class="content">
             <div class="detail">
                 <table class="detail-table">
-                    <tbody>
+                    <tbody class="detail-table-body">
                         <% list.forEach(function (data, index) { %>
                             <tr class='<%= helper.isOdd(index) %>'>
                                 <td class="detail-table-col_title">
@@ -59,10 +60,10 @@
                 </div>
                 <div class="category-section-list">
                     <ul>
-                        <li><a href="javascript:void(0);" class="category-section-item selected">所有</a></li>
+                        <li><a href="/#" class="category-section-item selected">所有</a></li>
                         <% for (var category in config) { %>
                         <% var category_name = config[category].aka; %>
-                            <li><a href="javascript:void(0);" class="category-section-item" title="<%= category_name %>"><%= category_name %></a></li>
+                            <li><a href="#category/<%= category %>" class="category-section-item" title="<%= category_name %>"><%= category_name %></a></li>
                         <% } %>
                     </ul>
                 </div>
@@ -94,132 +95,16 @@
                 </div>
                 <div class="filter-section-list">
                     <ul>
-                        <li class="filter-section-item">
-                            <input type="checkbox" class="filter-section-item-ckbox">
-                            <label class="filter-section-item-text">
-                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
-                            </label>
-                        </li>
-                        <li class="filter-section-item">
-                            <input type="checkbox" class="filter-section-item-ckbox">
-                            <label class="filter-section-item-text">
-                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
-                            </label>
-                        </li>
-                        <li class="filter-section-item">
-                            <input type="checkbox" class="filter-section-item-ckbox">
-                            <label class="filter-section-item-text">
-                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
-                            </label>
-                        </li>
-                        <li class="filter-section-item">
-                            <input type="checkbox" class="filter-section-item-ckbox">
-                            <label class="filter-section-item-text">
-                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
-                            </label>
-                        </li>
-                        <li class="filter-section-item">
-                            <input type="checkbox" class="filter-section-item-ckbox">
-                            <label class="filter-section-item-text">
-                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
-                            </label>
-                        </li>
-                        <li class="filter-section-item">
-                            <input type="checkbox" class="filter-section-item-ckbox">
-                            <label class="filter-section-item-text">
-                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
-                            </label>
-                        </li>
-                        <li class="filter-section-item">
-                            <input type="checkbox" class="filter-section-item-ckbox">
-                            <label class="filter-section-item-text">
-                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
-                            </label>
-                        </li>
-                        <li class="filter-section-item">
-                            <input type="checkbox" class="filter-section-item-ckbox">
-                            <label class="filter-section-item-text">
-                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
-                            </label>
-                        </li>
-                        <li class="filter-section-item">
-                            <input type="checkbox" class="filter-section-item-ckbox">
-                            <label class="filter-section-item-text">
-                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
-                            </label>
-                        </li>
-                        <li class="filter-section-item">
-                            <input type="checkbox" class="filter-section-item-ckbox">
-                            <label class="filter-section-item-text">
-                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
-                            </label>
-                        </li>
-                        <li class="filter-section-item">
-                            <input type="checkbox" class="filter-section-item-ckbox">
-                            <label class="filter-section-item-text">
-                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
-                            </label>
-                        </li>
-                        <li class="filter-section-item">
-                            <input type="checkbox" class="filter-section-item-ckbox">
-                            <label class="filter-section-item-text">
-                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
-                            </label>
-                        </li>                                                                                            
-                        <li class="filter-section-item">
-                            <input type="checkbox" class="filter-section-item-ckbox">
-                            <label class="filter-section-item-text">
-                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
-                            </label>
-                        </li>
-                        <li class="filter-section-item">
-                            <input type="checkbox" class="filter-section-item-ckbox">
-                            <label class="filter-section-item-text">
-                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
-                            </label>
-                        </li>
-                        <li class="filter-section-item">
-                            <input type="checkbox" class="filter-section-item-ckbox">
-                            <label class="filter-section-item-text">
-                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
-                            </label>
-                        </li>
-                        <li class="filter-section-item">
-                            <input type="checkbox" class="filter-section-item-ckbox">
-                            <label class="filter-section-item-text">
-                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
-                            </label>
-                        </li>
-                        <li class="filter-section-item">
-                            <input type="checkbox" class="filter-section-item-ckbox">
-                            <label class="filter-section-item-text">
-                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
-                            </label>
-                        </li>
-                        <li class="filter-section-item">
-                            <input type="checkbox" class="filter-section-item-ckbox">
-                            <label class="filter-section-item-text">
-                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
-                            </label>
-                        </li>
-                        <li class="filter-section-item">
-                            <input type="checkbox" class="filter-section-item-ckbox">
-                            <label class="filter-section-item-text">
-                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
-                            </label>
-                        </li>
-                        <li class="filter-section-item">
-                            <input type="checkbox" class="filter-section-item-ckbox">
-                            <label class="filter-section-item-text">
-                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
-                            </label>
-                        </li>
-                        <li class="filter-section-item">
-                            <input type="checkbox" class="filter-section-item-ckbox">
-                            <label class="filter-section-item-text">
-                                <img class="filter-section-item-img" src="http://www.google.com/s2/favicons"><span>测试</span>
-                            </label>
-                        </li>                                                 
+                        <% for (var category in config) { %>
+                            <% var websites = config[category].websites; %>
+                            <% websites.forEach(function (site) { %>
+                            <li class="filter-section-item">
+                                <a href="#webiste/<%= site.id %>" class="filter-section-item-text">
+                                    <img class="filter-section-item-img" src="<%= site.icon %>"><span><%= site.aka %></span>
+                                </a>
+                            </li>
+                            <% }) %>
+                        <% } %>
                     </ul>
                 </div>
             </div>
