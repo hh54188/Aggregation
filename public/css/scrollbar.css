@@ -2,15 +2,40 @@
 	Custom define scroll bar:
 	http://css-tricks.com/custom-scrollbars-in-webkit/
 */
-::-webkit-scrollbar {
+
+/*
+    Side & Content scroll style
+*/
+.side::-webkit-scrollbar, .content::-webkit-scrollbar {
     width: 8px;
 }
  
-::-webkit-scrollbar-track {
+.side::-webkit-scrollbar-track, .content::-webkit-scrollbar-track {
     border-radius: 10px;
 }
  
-::-webkit-scrollbar-thumb {
+.side::-webkit-scrollbar-thumb, .content::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background: #D9D9D9; /*#BDBDBD*/
+}
+
+/*
+    nav scroll style
+    为什么要拆开nav的scrollbar
+    因为我觉得nav板块用相同颜色非常难看
+
+    但我又找不到更好的配色方案
+    于是暂时把圆角去掉了，换了一个深色，会好一些
+*/
+
+.nav::-webkit-scrollbar {
+    width: 8px;
+}
+ 
+.nav::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+ 
+.nav::-webkit-scrollbar-thumb {
+    background: #888888; /*#BDBDBD*/
 }

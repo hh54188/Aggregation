@@ -13,13 +13,6 @@ app.NewsList = Backbone.Collection.extend({
 			return news.get("meta").category_code == category;
 		});
 		return filterResult;
-	},
-	
-	filterBySite: function (site) {
-		var filterResult = this.filter(function (news) {
-			return news.get("meta").id == site;
-		});
-		return filterResult;
 	}
 });
 

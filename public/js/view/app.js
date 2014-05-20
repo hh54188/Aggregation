@@ -1,8 +1,12 @@
 var app = app || {};
 
+// Instances:
 var newsList = app.newsList || new app.NewsList;
 var categoryView = app.categoryView || new app.CategoryView;
+// Class
 var NewsView = app.NewsView;
+// Config:
+var Config = app.config || new app.AppConfig;
 
 app.Presenter = Backbone.View.extend({
 
@@ -18,24 +22,20 @@ app.Presenter = Backbone.View.extend({
             _this.render(data);
             // Nav
             categoryView.highlightByName();
+            // Store in config:
+            Config.setCurCategory();
         });
 
         Backbone.on("getNewsByCategory", function (category) {
+            debugger
             // Model
             var data = newsList.filterByCategory(category);
             // View
             _this.render(data);
             // Nav
             categoryView.highlightByName(category);
-        });
-
-        Backbone.on("getNewsByWebsite", function (site) {
-            // Model
-            var data = newsList.filterBySite(site);
-            // View
-            _this.render(data)
-            // Nav
-            categoryView.highlightByName();
+            // Store in config:
+            Config.setCurCategory(category);
         });
     },
 
