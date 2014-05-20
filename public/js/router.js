@@ -1,25 +1,27 @@
+var app = app || {};
 var newsList = app.newsList;
 
-var NewsRoute = Backbone.Router.extend({
-	routes: {
-		"/": "getDefaultNews",
-		"category/:name": "getNewsByCategory",
-		"website/:name": "getNewsByWebsite"
+
+var NewsRouter = Backbone.Router.extend({
+	initialize: function () {
+
 	},
-	getDefaultNews: function () {
-		console.log("DEFAULT!"); // Why this doesn't work
-		Backbone.trigger("getDefaultNews");
+	routes: {
+		"category/:name": "getNewsByCategory",
+		"website/:name": "getNewsByWebsite",
+		"*action": "getAllNews" // default route, match http://example.com/#anything-here
+	},
+	getAllNews: function () {
+		Backbone.trigger("getAllNews");
 	},
 	getNewsByCategory: function (category) {
-		console.log(category);
 		Backbone.trigger("getNewsByCategory", category);
 	},
 	getNewsByWebsite: function (website) {
-		console.log(website);
 		Backbone.trigger("getNewsByWebsite", website);
 	}
 });
 
-var myRouter = new NewsRoute();
+app.newsRouter = new NewsRouter();
 
 Backbone.history.start();

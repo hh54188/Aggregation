@@ -20,7 +20,7 @@
             </span>
         </td>
         <td class="detail-table-col_time">
-            <span>2天前</span>
+            <span><%= countdown %></span>
         </td>
         <td class="detail-table-col_source">
             <span>
@@ -59,10 +59,10 @@
                 </div>
                 <div class="category-section-list">
                     <ul>
-                        <li><a href="/#" class="category-section-item selected">所有</a></li>
+                        <li><a href="/#" data-category="all" class="category-section-item">所有</a></li>
                         {{ for (var category in config) { }}
                         {{ var category_name = config[category].aka; }}
-                            <li><a href="#category/{{= category }}" class="category-section-item" title="{{= category_name }}">{{= category_name }}</a></li>
+                            <li><a href="#category/{{= category }}" data-category="{{= category }}" class="category-section-item" title="{{= category_name }}">{{= category_name }}</a></li>
                         {{ } }}
                     </ul>
                 </div>
@@ -98,7 +98,7 @@
                             {{ var websites = config[category].websites; }}
                             {{ websites.forEach(function (site) { }}
                             <li class="filter-section-item">
-                                <a href="#webiste/{{= site.id }}" class="filter-section-item-text">
+                                <a href="#website/{{= site.id }}" class="filter-section-item-text">
                                     <img class="filter-section-item-img" src="{{= site.icon }}"><span>{{= site.aka }}</span>
                                 </a>
                             </li>
@@ -117,6 +117,8 @@
     <script type="text/javascript" src="/js/model/news.js"></script>
     <script type="text/javascript" src="/js/view/news.js"></script>
     <script type="text/javascript" src="/js/collection/news.js"></script>
+    <!-- Other View -->
+    <script type="text/javascript" src="/js/view/category.js"></script>
     <!-- Route -->
     <script type="text/javascript" src="/js/router.js"></script>
     <!-- Boot -->
