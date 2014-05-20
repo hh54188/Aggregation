@@ -7,7 +7,7 @@ var NewsRoute = Backbone.Router.extend({
 		"website/:name": "getNewsByWebsite"
 	},
 	getDefaultNews: function () {
-		console.log("DEFAULT!");
+		console.log("DEFAULT!"); // Why this doesn't work
 		Backbone.trigger("getDefaultNews");
 	},
 	getNewsByCategory: function (category) {

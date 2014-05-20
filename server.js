@@ -6,6 +6,8 @@
 // Globe Module
 var express = require("express");
 var ejs = require("ejs");
+ejs.open = '{{';
+ejs.close = '}}';
 
 // Config & Test data:
 var SampleData = require("./config/data");

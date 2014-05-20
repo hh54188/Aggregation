@@ -11,42 +11,41 @@
     <link rel="stylesheet" type="text/css" href="/css/category.css">
     <link rel="stylesheet" type="text/css" href="/css/filter.css">
     <link rel="stylesheet" type="text/css" href="/css/detail.css">
-    <!-- Lib -->
-    <script type="text/javascript" src="/js/lib/jquery.js"></script>
-    <script type="text/javascript" src="/js/lib/underscore.js"></script>
-    <script type="text/javascript" src="/js/lib/backbone.js"></script>
-    <!-- News -->
-    <script type="text/javascript" src="/js/model/news.js"></script>
-    <script type="text/javascript" src="/js/view/news.js"></script>
-    <script type="text/javascript" src="/js/collection/news.js"></script>
-    <!-- Route -->
-    <script type="text/javascript" src="/js/router.js"></script>
-    <!-- Boot -->
-    <script type="text/javascript" src="/js/view/app.js"></script>
-    <script type="text/javascript">
-        app.presenter.initNewsList(<%- JSON.stringify(list) %>);
-    </script>
-
 </head>
 <body>
+    <script type="text/template" id="news-template">
+        <td class="detail-table-col_title">
+            <span>
+                <a class="detail-table-link-primary" target="_blank" href="<%= url %>"><%= title %></a>
+            </span>
+        </td>
+        <td class="detail-table-col_time">
+            <span>2天前</span>
+        </td>
+        <td class="detail-table-col_source">
+            <span>
+                <a class="detail-table-link-secondary" target="_blank" href="<%= meta.url %>"><%= meta.category_name %></a>
+            </span>
+        </td>
+    </script>
 	<div class="main">
         <div class="content">
             <div class="detail">
                 <table class="detail-table">
                     <tbody class="detail-table-body">
-                        <% list.forEach(function (data, index) { %>
-                            <tr class='<%= helper.isOdd(index) %>'>
+                        {{ list.forEach(function (data, index) { }}
+                            <tr class='{{= helper.isOdd(index) }}'>
                                 <td class="detail-table-col_title">
-                                    <span><a class="detail-table-link-primary" target="_blank" href="<%= data.url %>"><%= data.title %></a></span>
+                                    <span><a class="detail-table-link-primary" target="_blank" href="{{= data.url }}">{{= data.title }}</a></span>
                                 </td>
                                 <td class="detail-table-col_time">
-                                    <span><%= helper.dateFormat(data.date) %></span>
+                                    <span>{{= helper.dateFormat(data.date) }}</span>
                                 </td>
                                 <td class="detail-table-col_source">
-                                    <span><a class="detail-table-link-secondary" target="_blank" href="<%= data.meta.url %>"><%= data.meta.name %></a></span>
+                                    <span><a class="detail-table-link-secondary" target="_blank" href="{{= data.meta.url }}">{{= data.meta.name }}</a></span>
                                 </td>
                             </tr>                            
-                        <% }) %>
+                        {{ }) }}
                     </tbody>
                 </table>
             </div>
@@ -61,10 +60,10 @@
                 <div class="category-section-list">
                     <ul>
                         <li><a href="/#" class="category-section-item selected">所有</a></li>
-                        <% for (var category in config) { %>
-                        <% var category_name = config[category].aka; %>
-                            <li><a href="#category/<%= category %>" class="category-section-item" title="<%= category_name %>"><%= category_name %></a></li>
-                        <% } %>
+                        {{ for (var category in config) { }}
+                        {{ var category_name = config[category].aka; }}
+                            <li><a href="#category/{{= category }}" class="category-section-item" title="{{= category_name }}">{{= category_name }}</a></li>
+                        {{ } }}
                     </ul>
                 </div>
             </div>
@@ -95,20 +94,35 @@
                 </div>
                 <div class="filter-section-list">
                     <ul>
-                        <% for (var category in config) { %>
-                            <% var websites = config[category].websites; %>
-                            <% websites.forEach(function (site) { %>
+                        {{ for (var category in config) { }}
+                            {{ var websites = config[category].websites; }}
+                            {{ websites.forEach(function (site) { }}
                             <li class="filter-section-item">
-                                <a href="#webiste/<%= site.id %>" class="filter-section-item-text">
-                                    <img class="filter-section-item-img" src="<%= site.icon %>"><span><%= site.aka %></span>
+                                <a href="#webiste/{{= site.id }}" class="filter-section-item-text">
+                                    <img class="filter-section-item-img" src="{{= site.icon }}"><span>{{= site.aka }}</span>
                                 </a>
                             </li>
-                            <% }) %>
-                        <% } %>
+                            {{ }) }}
+                        {{ } }}
                     </ul>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Lib -->
+    <script type="text/javascript" src="/js/lib/jquery.js"></script>
+    <script type="text/javascript" src="/js/lib/underscore.js"></script>
+    <script type="text/javascript" src="/js/lib/backbone.js"></script>
+    <!-- News -->
+    <script type="text/javascript" src="/js/model/news.js"></script>
+    <script type="text/javascript" src="/js/view/news.js"></script>
+    <script type="text/javascript" src="/js/collection/news.js"></script>
+    <!-- Route -->
+    <script type="text/javascript" src="/js/router.js"></script>
+    <!-- Boot -->
+    <script type="text/javascript" src="/js/view/app.js"></script>
+    <script type="text/javascript">
+        app.presenter.initNewsList({{- JSON.stringify(list) }});
+    </script>    
 </body>
 </html>
