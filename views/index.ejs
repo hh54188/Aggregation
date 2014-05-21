@@ -97,9 +97,13 @@
                         {{ for (var category in config) { }}
                             {{ var websites = config[category].websites; }}
                             {{ websites.forEach(function (site) { }}
-                            <li class="filter-section-item">
+                            <li class="filter-section-item" data-category="{{= category }}">
                                 <a href="javascript:void(0)" class="filter-section-item-text">
-                                    <img class="filter-section-item-img" src="{{= site.icon }}"><span>{{= site.aka }}</span>
+                                    <img class="filter-section-item-img" src="{{= site.icon }}">
+                                    <span>{{= site.aka }}</span>
+                                    <div class="filter-section-item-icons">
+                                        <input data-site="{{= site.id }}" class="filter-section-item-watched" type="checkbox" checked>
+                                    </div>
                                 </a>
                             </li>
                             {{ }) }}
@@ -111,16 +115,15 @@
     </div>
     <!-- Lib -->
     <script type="text/javascript" src="/js/lib/jquery.js"></script>
-    <script type="text/javascript" src="/js/lib/underscore.js"></script>
-    <script type="text/javascript" src="/js/lib/backbone.js"></script>
+    <script type="text/javascript" src="/js/lib/underscore-debug.js"></script>
+    <script type="text/javascript" src="/js/lib/backbone-debug.js"></script>
     <!-- News -->
     <script type="text/javascript" src="/js/model/news.js"></script>
     <script type="text/javascript" src="/js/view/news.js"></script>
     <script type="text/javascript" src="/js/collection/news.js"></script>
     <!-- Other View -->
     <script type="text/javascript" src="/js/view/category.js"></script>
-    <!-- Route -->
-    <script type="text/javascript" src="/js/router.js"></script>
+    <script type="text/javascript" src="/js/view/sites.js"></script>    
     <!-- Config -->
     <script type="text/javascript" src="/js/model/cfg.js"></script>
     <!-- Boot -->
@@ -128,5 +131,11 @@
     <script type="text/javascript">
         app.presenter.initNewsList({{- JSON.stringify(list) }});
     </script>    
+    <!-- 
+        Router:
+        1. router.js必须放在app.js之后，必须先监听事件，再触发事件 
+        2. router.js必须放在数据初始化之后，否则无法加载数据
+    -->
+    <script type="text/javascript" src="/js/router.js"></script>    
 </body>
 </html>

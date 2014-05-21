@@ -36,3 +36,6 @@ a {
 	color:black;
 	outline:none;
 }
+input {
+	outline: none;
+}
