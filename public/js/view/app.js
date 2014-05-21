@@ -18,8 +18,10 @@ app.Presenter = Backbone.View.extend({
         var data, previous;
 
         Backbone.on("getAllNews", function () {
+            // restore config from
+            var ignoredSites = Config.getIgnoredSites();
             // Model
-            data = newsList.getAll();
+            data = newsList.getAll(ignoredSites);
             // View
             _this.render(data);
             // Nav
@@ -65,20 +67,24 @@ app.Presenter = Backbone.View.extend({
     },
 
     render: function (list) {
+
         var _this = this;
+        var fragment = document.createDocumentFragment();
         this.$el.empty();
-        list.forEach(function (info, index) {
+        
+        _.each(list, function (info, index) {
             info.set("index", index); // 无法把index作为参数传入，Backbone.View只能识别model
 
             var newsView = new NewsView({
                 model: info
             });
-
-            _this.$el.append(newsView.el);
+            
+            fragment.appendChild(newsView.el);
         });
+
+        _this.$el.append(fragment);
     },
     initNewsList: function (data) {
-        console.log(data);
         newsList.reset(data, { silent: true });
     }
 

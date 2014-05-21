@@ -2,13 +2,30 @@ var app = app || {};
 
 app.NewsList = Backbone.Collection.extend({
 	model: app.News,
-	url: '/news',
+	url: "/news",
 
-	getAll: function () {
-		return this;
+	getAll: function (ignoredSites) {
+		var filterResult = this.filter(function (news) {
+			var meta = news.get("meta");
+
+			if (ignoredSites || ignoredSites.length) {
+				for (var i = 0; i < ignoredSites.length; i++) {
+					if (ignoredSites[i] == meta.id) {
+						return false;
+					}
+				}
+				return true;
+			}
+			return true;
+		});
+		return filterResult;
 	},
-
 	filterByCategory: function (category, ignoredSites) {
+
+		if (category == "all") {
+			return this.getAll(ignoredSites);
+		}
+
 		var filterResult = this.filter(function (news) {
 			var meta = news.get("meta");
 

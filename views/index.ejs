@@ -47,6 +47,15 @@
                             </tr>                            
                         {{ }) }}
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td class="detail-table-more-wrap" colspan="3">
+                                <span class="detail-table-more">点击加载更多</span>
+                                <span class="detail-table-more" style="display:none;">加载中</span>
+                                <span class="detail-table-more" style="display:none;">没有更多了</span>
+                            </td>
+                        </tr>
+                    </tfoot>                    
                 </table>
             </div>
         </div>
@@ -128,6 +137,7 @@
     <script type="text/javascript" src="/js/model/cfg.js"></script>
     <!-- Boot -->
     <script type="text/javascript" src="/js/view/app.js"></script>
+    <script type="text/javascript" src="/js/ui.js"></script>
     <script type="text/javascript">
         app.presenter.initNewsList({{- JSON.stringify(list) }});
     </script>    

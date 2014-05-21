@@ -27,6 +27,7 @@
 .detail-table tr {
 	height: 30px;
 	line-height: 30px;
+	border-left: 1px solid transparent;
 }
 
 .detail-table th, .detail-table td {
@@ -77,4 +78,13 @@
 
 .detail-table tr:hover {
 	background: #EDEDED;
+}
+
+td.detail-table-more-wrap {
+	text-align: center;
+}
+
+.detail-table-more {
+	color: #BDC2CA;
+	cursor: pointer;
 }
