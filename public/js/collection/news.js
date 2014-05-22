@@ -1,9 +1,15 @@
 var app = app || {};
+var B = Backbone;
 
 app.NewsList = Backbone.Collection.extend({
 	model: app.News,
 	url: "/news",
+	comparator: function (model) {
+		return -model.get("date");
+	},
+	initialize: function () {
 
+	},
 	getAll: function (ignoredSites) {
 		var filterResult = this.filter(function (news) {
 			var meta = news.get("meta");

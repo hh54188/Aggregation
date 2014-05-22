@@ -85,7 +85,7 @@ app.Presenter = Backbone.View.extend({
         _this.$el.append(fragment);
     },
     initNewsList: function (data) {
-        newsList.reset(data, { silent: true });
+        newsList.reset(data);
     }
 
 });
