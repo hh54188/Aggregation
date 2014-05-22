@@ -39,9 +39,9 @@ var config = {
                 id: "engadget_cn",
                 icon: "http://www.google.com/s2/favicons?domain=cn.engadget.com/",
                 aka: "Engadget中国版",
-                updateInterval: 10, //by minutes
-                type: "rss",
-                feed: "http://cn.engadget.com/tag/breaking+news/rss.xml"
+                updateInterval: 10 //by minutes
+                // type: "rss",
+                // feed: "http://cn.engadget.com/tag/breaking+news/rss.xml"
             },
             {
                 website: "http://www.huxiu.com",
