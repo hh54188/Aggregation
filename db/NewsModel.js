@@ -3,7 +3,10 @@ var mongoose = require('mongoose');
 NewsSchema = mongoose.Schema({
     title: String,
     url: String,
-    hash: [String],
+    hash: {
+        type: [String],
+        index: { unique: true }
+    },
     date: {
         type: [Number],
         index: true

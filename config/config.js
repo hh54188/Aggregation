@@ -26,7 +26,7 @@ var config = {
                 selector: [
                     {
                         textSelector: "#left_container .info h3 a"
-                    }             
+                    }
                 ]
             }            
         ]
@@ -34,6 +34,15 @@ var config = {
     "tech": {
         aka: "科技",
         websites: [
+            {
+                website: "http://cn.engadget.com/",
+                id: "engadget_cn",
+                icon: "http://www.google.com/s2/favicons?domain=cn.engadget.com/",
+                aka: "Engadget中国版",
+                updateInterval: 10, //by minutes
+                type: "rss",
+                feed: "http://cn.engadget.com/tag/breaking+news/rss.xml"
+            },
             {
                 website: "http://www.huxiu.com",
                 id: "huxiu",
