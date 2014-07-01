@@ -108,7 +108,10 @@ ConstructFn.prototype._fetch = function(url) {
     request(this.requestOptions, function(err, response, body) {
 
         if (err) {
-
+            /*
+                I can't detect whether developer passed resolve or reject function in,
+                but I can detect wheher developer passed callback function in
+            */
             if (_this.callback) {
                 _this.callback(err, null);
                 return;
