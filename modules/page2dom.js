@@ -69,7 +69,9 @@ function ConstructFn(urlArr, requestOptions, selector, callback) {
         this.callback = callback || emptyCallback;
     }
 
-
+    /*
+        Promise/A Support
+    */
     var promise = new RSVP.Promise (function(resolve, reject){
         _this._resolve = resolve;
         _this._reject = reject;
@@ -104,6 +106,7 @@ ConstructFn.prototype._fetch = function(url) {
     var _this = this;
     this.requestOptions.url = url;
     this.result = this.result || {};
+    this.merge = this.merge || {};
 
     request(this.requestOptions, function(err, response, body) {
 
@@ -121,6 +124,11 @@ ConstructFn.prototype._fetch = function(url) {
             return;
         }
 
+        /*
+            If no specify selector passed in, I will output cheerio wrapped body element $,
+            it act almost like jQuery: $("div.className"),
+            but not all selector support(attribute selector doesn't support)
+        */
         var $ = cheerio.load(body);
         var result = $;
 

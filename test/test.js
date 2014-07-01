@@ -15,9 +15,9 @@ var P2D = require("../modules/page2dom");
 
 
 
-new P2D("http://www.iqiyi.com", function (err, $) {
-	debugger
-});
+// new P2D("http://www.iqiyi.com", function (err, $) {
+// 	debugger
+// });
 
 
 
