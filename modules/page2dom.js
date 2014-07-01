@@ -1,6 +1,7 @@
 
 var request = require('request');
 var cheerio = require('cheerio');
+var RSVP = require('rsvp');
 
 var isArray = function (obj) {
     return Object.prototype.toString.call(obj) == "[object Array]"? true: false;
@@ -38,34 +39,44 @@ var mixin = function (defaultObj, customObj) {
 */
 function ConstructFn(urlArr, requestOptions, selector, callback) {
 
+    var _this = this;
     var args = arguments;
+
     if (!isArray(urlArr)) urlArr = [urlArr];
+    var emptyCallback = null;
 
     this.urlArr = urlArr;
     this.requestOptions = {};
     this.selector = null;
-    this.callback = new Function();
+    this.callback = emptyCallback;
 
-    if (args.length === 2) {
+    if (args.length <= 2) {
 
-        this.callback = args[1];
+        this.callback = args[1] || emptyCallback;
 
-    } else if (args.length === 3) {
+    } else if (args.length <= 3) {
 
         isString(args[1])? 
             this.selector = args[1]: 
             this.requestOptions = mixin(defaultRequestOpts, args[1]);
 
-        this.callback = args[2];
+        this.callback = args[2] || emptyCallback;
 
-    } else if (args.length === 4){
+    } else if (args.length <= 4){
 
         this.requestOptions = mixin(defaultRequestOpts, requestOptions);
         this.selector = selector;
-        this.callback = callback;
+        this.callback = callback || emptyCallback;
     }
 
-    this.startFetch();
+
+    var promise = new RSVP.Promise (function(resolve, reject){
+        _this._resolve = resolve;
+        _this._reject = reject;
+        _this.startFetch();
+    });
+
+    return promise;
 }
 
 
@@ -97,7 +108,14 @@ ConstructFn.prototype._fetch = function(url) {
     request(this.requestOptions, function(err, response, body) {
 
         if (err) {
-            _this.callback(err, null);
+
+            if (_this.callback) {
+                _this.callback(err, null);
+                return;
+            }
+
+            _this._reject(err);
+            return;
         }
 
         var $ = cheerio.load(body);
@@ -112,7 +130,14 @@ ConstructFn.prototype._fetch = function(url) {
         _this.result[url] = result;
 
         if (_this._checkComplete()) {
-            _this.callback(null, _this.result);
+
+            if (_this.callback) {
+                _this.callback(null, _this.result);
+                return    
+            }
+
+            _this._resolve(_this.result);
+            return;            
         }        
     });
 };
