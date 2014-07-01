@@ -25,6 +25,9 @@ var mixin = function (defaultObj, customObj) {
 
     for (var key in defaultObj) {
         result[key] = defaultObj[key];
+    }
+
+    for (var key in customObj) {
         result[key] = customObj[key];
     }
 
