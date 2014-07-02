@@ -9,20 +9,156 @@ var P2D = require("../modules/page2dom");
 var request = require("request");
 
 describe("Basic function", function (done) {
-    it ("should ouput cheerio wrapped body to callback when no selector specified", function (done) {
-        new P2D("http://www.baidu.com", function (err, $) {
+    it ("should output cheerio wrapped body to callback when no selector specified", function (done) {
+
+        var domain = "http://www.baidu.com";
+
+        new P2D(domain, function (err, result) {
+            if (err) {
+                return;
+            }
+            /*
+                It's diffcult to varify what $ exactly return,
+                what I can varified is it has body
+            */            
+            if (result[domain].html().length) {
+                done();
+            }
+        });
+    });
+
+    it ("should output selector result when selector specified", function (done) {
+
+        var domain = "http://example.com/";
+        var isArray = function () {
+            return Object.prototype.toString.call(arguments[0]) == "[object Array]"? true: false;
+        }
+
+        new P2D(domain, "p", function (err, result) {
+            if (err) {
+                return;
+            }
+            
+            if (isArray(result[domain]) && result[domain].length != 0) {
+                done();
+            }
+        });
+    });
+
+    it ("output selector result length should be zero when no element matched", function (done) {
+
+        var domain = "http://example.com/";
+        var isArray = function () {
+            return Object.prototype.toString.call(arguments[0]) == "[object Array]"? true: false;
+        }
+
+        new P2D(domain, "img", function (err, result) {
             if (err) {
                 return;
             }
 
-            request({
-                url: "http://www.baidu.com"
-            }, function(err, response, body) {
-                var tmp1 = $["http://www.baidu.com"].html();
-                debugger
-            })
+            if (isArray(result[domain]) && result[domain].length === 0) {
+                done();
+            }
         });
     });
+
+    it ("should contain multiple result when multiple urls specified", function (done) {
+
+        var domain1 = "http://www.baidu.com";
+        var domain2 = "http://example.com";
+
+        new P2D([domain1, domain2], function (err, result) {
+
+            if (err) {
+                return;
+            }
+
+            if (result[domain1].html().length != 0 && result[domain2].html().length != 0 ) {
+                done();
+            }
+        });
+    });
+
+    it ("should contain multiple result when multiple urls and selector specified", function (done) {
+
+        var domain1 = "http://www.baidu.com";
+        var domain2 = "http://example.com";
+
+        var isArray = function () {
+            return Object.prototype.toString.call(arguments[0]) == "[object Array]"? true: false;
+        }
+
+        new P2D([domain1, domain2], "p", function (err, result) {
+
+            if (err) {
+                return;
+            }
+
+            if (isArray(result[domain1]) && isArray(result[domain2])) {
+                done();
+            }
+        });
+    });
+
+});
+
+describe ("Merge result", function () {
+
+    var domain1 = "http://www.baidu.com";
+    var domain2 = "http://example.com";
+
+    var isArray = function () {
+        return Object.prototype.toString.call(arguments[0]) == "[object Array]"? true: false;
+    }
+
+    it ("should return an array when request single url", function (done) {
+        new P2D(domain1, function (err, result, merge) {
+            if (err) {
+                return;
+            }
+
+            if (isArray(merge)) {
+                done();
+            }
+        });
+    });
+
+    it ("should return an array when request multiple urls", function (done) {
+        new P2D([domain1, domain2], function (err, result, merge) {
+            if (err) {
+                return;
+            }
+
+            if (isArray(merge)) {
+                done();
+            }
+        });
+    });
+
+    it ("should return an array when request single url with selector", function (done) {
+        new P2D(domain1, "p", function (err, result, merge) {
+            if (err) {
+                return;
+            }
+
+            if (isArray(merge)) {
+                done();
+            }
+        });
+    });
+
+    it ("should return an array when request multiple urls with selector", function (done) {
+        new P2D([domain1, domain2], "p", function (err, result, merge) {
+            if (err) {
+                return;
+            }
+
+            if (isArray(merge)) {
+                done();
+            }
+        });
+    });        
 });
 
 describe('URL', function () {

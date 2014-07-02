@@ -20,19 +20,19 @@ var defaultRequestOpts = {
 };
 
 
-var mixin = function (defaultObj, customObj) {
-    var result = {};
 
-    for (var key in defaultObj) {
-        result[key] = defaultObj[key];
-    }
+var mixin = function () {
+    var result = {}, args = arguments;
 
-    for (var key in customObj) {
-        result[key] = customObj[key];
+    for (var i = 0; i < args.length; i++) {
+        for (var key in args[i]) {
+            result[key] = args[i][key];
+        }
     }
 
     return result;
 }
+
 
 /*
     fn(urlArr, cb)
@@ -109,7 +109,7 @@ ConstructFn.prototype._fetch = function(url) {
     var _this = this;
     this.requestOptions.url = url;
     this.result = this.result || {};
-    this.merge = this.merge || {};
+    this.merge = this.merge || [];
 
     request(this.requestOptions, function(err, response, body) {
 
@@ -134,11 +134,13 @@ ConstructFn.prototype._fetch = function(url) {
         */
         var $ = cheerio.load(body);
         var result = $;
+        _this.merge.push($);
 
         if (_this.selector) {
             result = $(_this.selector).map(function (index, item) {
                 return $(item);
             });
+            _this.merge.concat(result);
         }
 
         _this.result[url] = result;
@@ -146,11 +148,11 @@ ConstructFn.prototype._fetch = function(url) {
         if (_this._checkComplete()) {
 
             if (_this.callback) {
-                _this.callback(null, _this.result);
+                _this.callback(null, _this.result, _this.merge);
                 return    
             }
 
-            _this._resolve(_this.result);
+            _this._resolve(_this.result, _this.merge);
             return;            
         }        
     });
